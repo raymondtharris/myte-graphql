@@ -1,6 +1,9 @@
 package main
 
 import (
+	"context"
+	"fmt"
+
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/graph-gophers/graphql-go"
 )
@@ -32,7 +35,24 @@ type post struct {
 	MarkdownPreview string
 }
 
-func mytegraphql() (string, error) {
+type Resolver struct{}
+
+type Request struct {
+	ID    float64 `json:"id"`
+	Value string  `json:"value"`
+}
+
+//func (r *Resolver) Post(args struct{ID graphql.ID, PostType String}) *postResolver{
+
+//}
+
+//type postResolver {
+//	post
+//}
+
+func mytegraphql(ctx context.Context, request Request) (string, error) {
+
+	fmt.Printf("ID: %f Value %s ", request.ID, request.Value)
 	return "Myte GraphQL API", nil
 }
 
